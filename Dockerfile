@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 7989
 
 # 6. Start under PM2’s foreground runtime
-CMD ["pm2-runtime", "ecosystem.config.js", "--env", "production"]
+CMD ["pm2-runtime", "ecosystem.config.cjs", "--env", "production"]
