@@ -12,12 +12,12 @@ app.set('trust proxy', 1);
 
 app.use(express.json());
 
-app.get("/events/:placeId", requireAuth, async (req, res) => {
-  const { placeId } = req.params;
+app.get("/roblox-events/:universeId", requireAuth, async (req, res) => {
+  const { universeId } = req.params;
 
   try {
     // Get universe ID
-    const uniRes = await fetch(`https://apis.roblox.com/universes/v1/places/${placeId}/universe`);
+    const uniRes = await fetch(`https://apis.roblox.com/universes/v1/places/${universeId}/universe`);
     const uni = await uniRes.json();
 
     if (!uni.universeId) {
