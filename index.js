@@ -1,15 +1,23 @@
+import 'dotenv/config';
 import express from "express";
 import fetch from "node-fetch";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/events/:placeId", async (req, res) => {
-  const { placeId } = req.params;
+import requireAuth from "./middleware/requireAuth.js";
+
+// Show the actual IP a request came from to the apps, instead of always 127.0.0.1
+app.set('trust proxy', 1);
+
+app.use(express.json());
+
+app.get("/roblox-events/:universeId", requireAuth, async (req, res) => {
+  const { universeId } = req.params;
 
   try {
     // Get universe ID
-    const uniRes = await fetch(`https://apis.roblox.com/universes/v1/places/${placeId}/universe`);
+    const uniRes = await fetch(`https://apis.roblox.com/universes/v1/places/${universeId}/universe`);
     const uni = await uniRes.json();
 
     if (!uni.universeId) {
