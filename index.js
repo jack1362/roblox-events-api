@@ -5,7 +5,14 @@ import fetch from "node-fetch";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/events/:placeId", async (req, res) => {
+const requireAuth = require("./middleware/requireAuth.js");
+
+// Show the actual IP a request came from to the apps, instead of always 127.0.0.1
+app.set('trust proxy', 1);
+
+app.use(express.json());
+
+app.get("/events/:placeId", requireAuth, async (req, res) => {
   const { placeId } = req.params;
 
   try {
