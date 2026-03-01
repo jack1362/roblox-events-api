@@ -1,5 +1,6 @@
 services:
   roblox-events-api:
+    build: .
     command:
       - "pm2-runtime"
       - "ecosystem.config.cjs"
