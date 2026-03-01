@@ -1,0 +1,29 @@
+services:
+  roblox-events-api:
+    command:
+      - "pm2-runtime"
+      - "ecosystem.config.cjs"
+      - "--env"
+      - "production"
+    container_name: "roblox-events-api"
+    entrypoint:
+      - "docker-entrypoint.sh"
+    environment:
+      - "PORT=7989"
+      - "VPS_API_KEY=XpRCrNtmTnTgbcSWTavX"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "NODE_VERSION=18.20.8"
+      - "YARN_VERSION=1.22.22"
+    hostname: "f9c579202052"
+    image: "roblox-events-api:latest"
+    ipc: "private"
+    logging:
+      driver: "json-file"
+      options: {}
+    mac_address: "62:b3:7f:3d:ab:dd"
+    network_mode: "bridge"
+    ports:
+      - "7989:7989/tcp"
+    restart: "unless-stopped"
+    working_dir: "/usr/src/app"
+version: "3.6"
