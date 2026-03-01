@@ -15,7 +15,7 @@ services:
       - "NODE_VERSION=18.20.8"
       - "YARN_VERSION=1.22.22"
     hostname: "f9c579202052"
-    image: "roblox-events-api:latest"
+    image: roblox-events-api:1.0.0
     ipc: "private"
     logging:
       driver: "json-file"
@@ -26,4 +26,3 @@ services:
       - "7989:7989/tcp"
     restart: "unless-stopped"
     working_dir: "/usr/src/app"
-version: "3.6"
